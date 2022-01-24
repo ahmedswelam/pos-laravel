@@ -53,8 +53,8 @@
             <!-- Section title -->
             <h2><i class="fa fa-product-hunt" aria-hidden="true"></i> Products</h2>
             
-            @foreach($data as $value)
-            <form action="{{url('home/cart', $value->id)}}" method="POST">
+            @foreach ($data as $value)
+            <form action="{{url('home', $value->id)}}" method="POST">
             @csrf
             @if($value->pro_quantity == 0)
             <button class="btn btn-primary btn-sm cart-btn disabled">
@@ -78,7 +78,7 @@
             <h2>
                 <i class="fa fa-shopping-cart" aria-hidden="true">
                 </i> Shopping cart 
-                
+                <span class="badge">{{$totalQty}}</span>
             </h2>
 
             <!-- Section Content -->
@@ -118,18 +118,16 @@
                                     <i class="fa fa-minus-square-o" aria-hidden="true"></i>
                                 </a>
                             </td>
-                            <td>Total Products : {{$totalQty}} <br> </td>
-                            <td>Total Price: {{$totalprice}}</td>
                         </tr>
                         @endforeach
                         </tbody>
                         @endif
                         <!-- table footer -->
                         <tfoot>
-                   
-                  
-            </tfoot>
-            </table>
+                        <td>Total Products : {{$totalQty}} <br> </td>
+                        <td>Total Price: {{$totalprice}}</td>
+        </tfoot>
+        </table>
 			  </div>
 
 

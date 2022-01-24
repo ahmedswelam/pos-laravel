@@ -20,8 +20,8 @@ Route::get('/', function () {
 
 
 Route::get('home', [pos::class, 'home']);
-Route::get('home/cart', [pos::class, 'myCart']);
 Route::post('home/{id}', [pos::class, 'AddToCart']);
+Route::get('home/cart', [pos::class, 'myCart']);
 Route::get('home/clear/{id}', [pos::class, 'deleteOne'])->name('delete');
 Route::get('home/remove/{id}', [pos::class, 'removeItem'])->name('remove');
 
