@@ -16,26 +16,23 @@ class pos extends Controller
         return view('homepage');
     }
 
-
-
-    /* Add To Cart Function */
-    public function AddToCart(Request $request, $id){
-        $product = product::find($id);
-
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart    = new Cart($oldCart);
-        $cart->add($product, $product->id);
-        
-        $request->session()->put('cart', $cart);
-        return redirect(url('home/cart'));
-
-    }
-
+        /* Add To Cart Function */
+        public function AddToCart(Request $request, $id){
+            $product = product::find($id);
+    
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart    = new Cart($oldCart);
+            $cart->add($product, $product->id);
+            
+            $request->session()->put('cart', $cart);
+            return redirect(url('home/cart'));
+    
+        }
     /* My Cart Products Function */
     public function myCart(){
         /* Products Fetch */
         $data = product::get();  // product = table name
-        
+        return view('home', ['data' => $data]);
 
         /* Cart Logic */
         $products = [];
@@ -46,9 +43,11 @@ class pos extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         //return view('home');
-        return view('home',['data' => $data],['products' => $cart->items,
+        return view('home', ['products' => $cart->items,
         'totalprice' => $cart->totalprice,'totalQty' => $cart->totalQty]);  
     }
+
+
 
     /* Delete One by One Function */
     public function deleteOne($id){
