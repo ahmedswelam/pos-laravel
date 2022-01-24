@@ -43,18 +43,18 @@ class cart
     /* Delete One by One */
     public function deleteOne($id){
 
+        $this->items[$id]['pro_price']--;
         $this->items[$id]['qty']--;
         $this->items[$id]['pro_price'] -= $this->items[$id]['item']['pro_price'];
-        $this->totalQty--;
         $this->totalprice--;
-        $this->totalprice -= $this->items[$id]['item']['pro_price'];
+        $this->totalQty--;
 
     }
 
     /* Remove Itme From cart */
     public function removeItem($id){
         $this->totalQty -= $this->items[$id]['qty'];
-        $this->totalprice -= $this->items[$id]['item']['pro_price'];
+        $this->totalprice -= $this->items[$id]['pro_price'];
         unset($this->items[$id]);
     }
 

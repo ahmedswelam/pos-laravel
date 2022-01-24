@@ -20,6 +20,8 @@ class pos extends Controller
 
     /* Add To Cart Function */
     public function AddToCart(Request $request, $id){
+        
+
         $product = product::find($id);
 
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -33,12 +35,12 @@ class pos extends Controller
 
     /* My Cart Products Function */
     public function myCart(){
+       
         /* Products Fetch */
         $data = product::get();  // product = table name
-        
+        /*return view('home',['data' => $data]);*/
 
         /* Cart Logic */
-        $products = [];
         if (!Session::has('cart')) {
             # code...
             return view('home', ['products' => null]);

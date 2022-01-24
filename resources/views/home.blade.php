@@ -43,7 +43,6 @@
         </nav>
     <!-- Header End-->
 
-
 <div class="container">
 	<div class="row">
 
@@ -51,7 +50,7 @@
 		<div class="col-md-6"  style="width: 50%;">	
         
             <!-- Section title -->
-            <h2><i class="fa fa-product-hunt" aria-hidden="true"></i> Products</h2>
+            <h2><i class="fa fa-product-hunt" aria-hidden="true"></i> Products / Laptops</h2>
             
             @foreach ($data as $value)
             <form action="{{url('home', $value->id)}}" method="POST">
@@ -71,15 +70,16 @@
             </div>   
             @endforeach                
         </div>
-
 		<!-- Cart Section -->
+        @if(Session::has('cart'))
         <div class="col-md-4"  style="width: 50%;">
              <!-- Section title -->
-            <h2>
-                <i class="fa fa-shopping-cart" aria-hidden="true">
-                </i> Shopping cart 
-                <span class="badge">{{$totalQty}}</span>
-            </h2>
+                <h2>
+                    <i class="fa fa-shopping-cart" aria-hidden="true">
+                    </i> Shopping cart 
+                    <span class="badge">{{$totalQty}}</span>
+                </h2>
+            
 
             <!-- Section Content -->
             <div class="panel panel-default">
@@ -99,7 +99,7 @@
                         </thead>
 
                         <!-- table body -->
-                        @if(Session::has('cart'))
+
                         <tbody>
                         @foreach ($products as $product)
                         <tr>
@@ -113,22 +113,22 @@
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </a>
                             </td>
-                            <td>
-                                <a href="{{ Route('delete', ['id' => $product['item']['id']]) }}">
-                                    <i class="fa fa-minus-square-o" aria-hidden="true"></i>
-                                </a>
-                            </td>
                         </tr>
                         @endforeach
+
                         </tbody>
-                        @endif
                         <!-- table footer -->
                         <tfoot>
                         <td>Total Products : {{$totalQty}} <br> </td>
                         <td>Total Price: {{$totalprice}}</td>
-        </tfoot>
-        </table>
-			  </div>
+                        </tfoot>
+                        </table>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
+</div>
 
 
 
@@ -150,6 +150,9 @@
             <!-- Cart Javascript-->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
             {{-- <script src="{{ elixir('js/cart.js') }}"></script> --}}
-</body>
+
+        
+        
+        </body>
 	
 </html>
